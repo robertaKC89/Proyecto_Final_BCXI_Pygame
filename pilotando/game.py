@@ -1,10 +1,16 @@
 #creo que en game.py debe ir el código para arrancar juego + bucle principal
-import pygame
-import time
+#import pygame
+#import time
 
-class Nave (pygame.Rect):
-    pass
+class Pilotando:
+    def __init__ (self) -> None:
+        print ('arranca juego')
 
+if __name__ == '__main__':  #llamo al constructor
+    Pilotando()
+    
+
+'''
 class Pilotando: #necesitaré:
 
 #este alto y ancho aquí no van y lo se, pero ya veremos....
@@ -39,4 +45,4 @@ class Pilotando: #necesitaré:
 if __name__ == "__main__":  #compruebo si el nombre del módulo es cadena main
     juego = Pilotando()  #llamo a mi class instanciando y me construyo juego
     juego.bucle_principal()   #la forma de iniciar el juego es llamando al método(función dentro de la class)
-        
+'''       
