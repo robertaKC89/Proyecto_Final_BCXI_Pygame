@@ -9,6 +9,9 @@ class Pilotando:
         print ('arranca juego')
         pg.init ()
         self.display = pg.display.set_mode ((ANCHO, ALTO))  #me guardo pantalla
+        pg.display.set_caption ("Pilotando")
+        #icon = pg.image.load ('scripts/astronave.png')
+        #pg.display.set_icon (icon)
 
     def jugando (self): #método con bucle principal
         salir = False
