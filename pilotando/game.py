@@ -1,14 +1,25 @@
 #creo que en game.py debe ir el código para arrancar juego + bucle principal
-#import pygame
-#import time
+
+import pygame
+from pilotando import ALTO, ANCHO
+
 
 class Pilotando:
     def __init__ (self) -> None:
         print ('arranca juego')
+        pygame.init ()
+        self.display = pygame.display.set_mode ((ANCHO, ALTO))  #me guardo pantalla
 
-if __name__ == '__main__':  #llamo al constructor
-    Pilotando()
-    
+    def jugando (self): #método con bucle principal
+        salir = False
+        while not salir:
+            for event in pygame.event.get():    #detecto eventos
+                if event.type == pygame.QUIT:
+                    salir = True
+            self.display.fill ((99,99,99))
+            pygame.display.flip ()
+
+                 
 
 '''
 class Pilotando: #necesitaré:
