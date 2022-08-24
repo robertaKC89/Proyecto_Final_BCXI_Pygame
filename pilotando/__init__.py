@@ -4,3 +4,5 @@
 
 ANCHO = 800
 ALTO = 650
+
+COLOR_SMS = (255, 255, 255)
