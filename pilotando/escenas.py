@@ -1,6 +1,7 @@
 import os
 import pygame as pg
 from . import ANCHO, ALTO, COLOR_SMS, FONDO_PORTADA
+from . entidades import Nave
 
 #todas las pantallas deben tener su bucle principal
 class Escena:
@@ -59,14 +60,17 @@ class Juego (Escena):
         super().__init__(pantalla)
         galaxia_fondo = os.path.join ("scripts", "images", "galaxia.png")   
         self.fondo = pg.image.load (galaxia_fondo)  #cargada img de fondo en memoria
+        self.jugador = Nave ()
+
     def bucle_principal(self):
         salir = False
         while not salir:
             for event in pg.event.get():    
                 if event.type == pg.QUIT:
                     pg.quit ()
-            self.pantalla.fill ((0, 99, 0))  #NECESITO METER OTRO FONDO + IMGS
+            self.pantalla.fill ((0, 0, 66))  
             self.pinto_fondo ()
+            self.pantalla.blit (self.jugador.image, self.jugador.rect)  #pinto nave en pantalla
             pg.display.flip ()
 
     def pinto_fondo (self):
