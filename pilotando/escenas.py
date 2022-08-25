@@ -1,6 +1,6 @@
 import os
 import pygame as pg
-from . import ANCHO, ALTO, COLOR_SMS
+from . import ANCHO, ALTO, COLOR_SMS, FONDO_PORTADA
 
 #todas las pantallas deben tener su bucle principal
 class Escena:
@@ -24,9 +24,11 @@ class Portada (Escena): #hereda de escena con el correspondiente constructor que
         salir = False
         while not salir:
             for event in pg.event.get():    #detecto eventos para que no se me caiga surface
-                if event.type == pg.QUIT:   #QUIT es pulsar 'x'
+                if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
                     salir = True
-            self.pantalla.fill ((21, 67, 96))  
+                if event.type == pg.QUIT:   #QUIT es pulsar 'x'
+                    pg.quit ()
+            self.pantalla.fill (FONDO_PORTADA)  
             self.pintar_logo ()
             self.pintar_texto ()
             pg.display.flip ()
@@ -45,22 +47,30 @@ class Portada (Escena): #hereda de escena con el correspondiente constructor que
         pos_y = .80 * ALTO
         self.pantalla.blit (texto, (pos_x, pos_y)) 
 
+"""
+en Juego debo: 
+- cargar img de fondo en memoria
+- crear funcion de pintar_fondo
+- llamar a esta función para que el fondo se pinte en bucle principal de Juego
 
-
-    
-        
-
+"""
 class Juego (Escena):
+    def __init__(self, pantalla: pg.Surface):
+        super().__init__(pantalla)
+        galaxia_fondo = os.path.join ("scripts", "images", "galaxia.png")   
+        self.fondo = pg.image.load (galaxia_fondo)  #cargada img de fondo en memoria
     def bucle_principal(self):
-        #screen = pg.display.set_mode ([800, 650])   #NO FUNCIONA AUN!!!
-        #fondodos = pg.image.load (os.path.join ("scripts", "ASTEROIDE1.png")).convert()
         salir = False
         while not salir:
             for event in pg.event.get():    
                 if event.type == pg.QUIT:
-                    salir = True
+                    pg.quit ()
             self.pantalla.fill ((0, 99, 0))  #NECESITO METER OTRO FONDO + IMGS
+            self.pinto_fondo ()
             pg.display.flip ()
+
+    def pinto_fondo (self):
+        self.pantalla.blit (self.fondo, (0, 0))
 
 class Records (Escena):
     def bucle_principal(self):
@@ -70,7 +80,7 @@ class Records (Escena):
         while not salir:
             for event in pg.event.get():    
                 if event.type == pg.QUIT:
-                    salir = True
+                    pg.quit ()
             self.pantalla.fill ((0, 0, 99))  #NECESITO METER OTRO FONDo + IMGS
             pg.display.flip ()
 
