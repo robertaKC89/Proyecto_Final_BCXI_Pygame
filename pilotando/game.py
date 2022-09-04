@@ -2,7 +2,7 @@
 import os
 import pygame as pg
 from pilotando import ALTO, ANCHO
-from pilotando.escenas import Portada, Juego, Records
+from pilotando.escenas import Portada, Niveluno, Niveldos, Records
 
 
 class Pilotando:
@@ -18,7 +18,8 @@ class Pilotando:
         #recorro cada una y les meto su bucle_principal
         self.escenas = [ 
             Portada (self.display),
-            Juego (self.display),
+            Niveluno (self.display),
+            Niveldos (self.display),
             Records (self.display),
         ]
 
